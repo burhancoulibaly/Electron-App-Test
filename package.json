@@ -2,10 +2,14 @@
   "name": "electron-app-test",
   "version": "1.0.0",
   "description": "testing out electron",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ./src/main.js"
   },
   "author": "Menekou B Coulibaly",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^1.7.9"
+  }
 }
