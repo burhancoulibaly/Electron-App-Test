@@ -2,8 +2,51 @@
 <html lang="en">
 <head>
     <title>Song List</title>
+    <link rel="stylesheet" href="./home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
 <body>
-    <h1>Song List</h1>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="" class="brand-logo center">Song List</a>
+        </div>
+    </nav>
+
+    <ul>
+
+    </ul>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector('ul');
+
+        //catch add song and add song
+        ipcRenderer.on('song:add', function(e, song){
+            const li = document.createElement('li');
+            li.className = 'collection songs';
+            const songItem = document.createTextNode(song);
+            li.appendChild(songItem);
+            console.log(song);
+            ul.appendChild(li);
+        })
+
+        //clear songs
+        ipcRenderer.on('song:clear', function(e, song){
+            ul.innerHTML = "";
+            ul.className = '';
+        })
+
+        //remove songs
+        ul.addEventListener('dblclick',removeSong);
+
+        function removeSong(e){
+            e.target.remove();
+            if(ul.children.length == 0){
+                ul.className = '';
+            }        
+        }
+
+    </script>
 </body>
 </html>
